@@ -18,7 +18,7 @@ param tesal{V}; # Departure times of the impostor
 
 var x{N,N} binary; 
 var Tau{N} >= 0;
-var y{V} binary;
+#var y{V} binary;
 
 minimize costostotales:
 	#sum{i in N, j in N}(tiempos[i,j]*x[i,j])+sum{j in T}tar[j]; This o.f. doesn't work if waiting times are allowed
@@ -47,11 +47,11 @@ subject to initialTau:
 	
 # These constraints take into account the impostor whereabouts
 
-subject to antes {j in V}:
-	Tau[j]+tar[j] <= telleg[j]+1000*(1-y[j]);
+#subject to antes {j in V}:
+#	Tau[j]+tar[j] <= telleg[j]+1000*(1-y[j]);
 	
-subject to desps {j in V}:
-	Tau[j] >= tesal[j]*(1-y[j]);
+#subject to desps {j in V}:
+#	Tau[j] >= tesal[j]*(1-y[j]);
 	
 subject to noad:
 	x['CafeteriaStart','MedBay'] = 1;
@@ -60,4 +60,5 @@ subject to noad:
 	
 	
 	
+
 	
